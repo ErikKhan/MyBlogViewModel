@@ -1,0 +1,19 @@
+﻿@model List<Post>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h2 style="text-align: center;">Welcome to the Blog Section</h2>
+@foreach (var item in Model)
+{
+   
+    <h3>@item.Title</h3>
+    <h4>@item.Content</h4>
+    <h5>@item.CreatedOn</h5>
+    <a class="btn btn-info btn-lg mx-3 my-3" asp-route-id="@item.Id" asp-action="Edit">Edit</a>
+    <a class="btn btn-info btn-lg mx-3 my-3" asp-action="Create">Create</a>
+    <a class="btn btn-primary btn-lg mx-3 my-3" asp-action="AllDetail"  asp-route-id="@item.Id">Read More.....</a>
+     <a class="btn btn-primary btn-lg mx-3 my-3" asp-action="AllDetails"  asp-route-id="@item.Id">View Detail.....</a>
+     <hr />
+}

@@ -1,0 +1,17 @@
+﻿@model List<Comment>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>This is Comment Section</h1>
+
+@foreach (var item in Model)
+{
+    @item.CommentText;<br />
+    @item.Created;<br />
+   
+    <a class="btn btn-primary btn-lg mx-3 my-3" asp-action="Edit"  asp-route-id="@item.CommentId">Edit</a>
+    <hr />
+    
+}

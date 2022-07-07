@@ -1,0 +1,41 @@
+﻿@model ViewModelAllDetails
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h3>This is all View Details Page</h3>
+<div>
+<h4>@Model.Post.Title</h4>
+<h5>@Model.Post.Content</h5>
+<p>@Model.Post.CreatedOn</p>
+</div>
+
+<h3>Comment Section</h3>
+
+<div>
+@*@Model.Comment.CommentText
+@Model.Comment.Created*@
+@*@{
+    int PostId ;
+}*@
+
+@foreach (var item in Model.Comment)
+{
+    @item.CommentText<br />
+    @item.Created <br />
+   <a class="btn btn-primary btn-lg mx-3 my-3" asp-controller="Comment" asp-action="Edit" asp-route-id="@item.CommentId">Edit</a>
+        //PostId = @item.PostId;
+     
+    <hr />
+}
+</div>
+<form asp-action="Create" asp-controller="Comment">
+    Content: <input type="text" name="commenttext"  />
+     Date: <input type="text" name="created" value="@DateTime.Now"  /><br />
+   @{
+        <input type="text" name="postid" value="@TempData["pId"]"/>
+   }
+    <button type="submit" class="btn btn-primary">Leave a comment</button>
+</form>
+

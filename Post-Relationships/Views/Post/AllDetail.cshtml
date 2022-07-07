@@ -1,0 +1,43 @@
+﻿@model List<Comment>;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h1> A single Post </h1>
+
+ 
+
+
+<div>
+    @{
+       // int id = Convert.ToInt32(@TempData["pId"]);
+       // var post =  Post_Relationships.Controllers.PostController.GetPost(id);
+       @foreach(var p in ViewBag.post)
+        {
+            <h3>@p.Title</h3>
+            
+        }
+    }
+<h4>Comments Section</h4>
+@{
+    int PostId ;
+}
+@foreach (var item in Model)
+{
+    @item.CommentText 
+        <a class="btn btn-primary btn-lg mx-3 my-3" asp-controller="Comment" asp-action="Edit" asp-route-id="@item.CommentId">Edit</a><br />
+        PostId = @item.PostId;
+
+}
+</div>
+<form asp-action="Create" asp-controller="Comment">
+    Leave your Comment Here: <input type="text" name="commenttext"  />
+     Date: <input type="text" name="created" value="@DateTime.Now"  />
+   @{
+        <input type="text" name="postid" value="@TempData["pId"]"/>
+   }
+    <button type="submit" class="btn btn-primary">Leave a comment</button>
+</form>
+
+
